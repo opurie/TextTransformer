@@ -5,6 +5,7 @@ public abstract class TextTransformerDecorator implements TextTransformerInterfa
     public TextTransformerDecorator(TextTransformerInterface transformer){
         this.transformer = transformer;
     }
+    @Override
     public String transform(String text){
         return transformer.transform(text);
     }
