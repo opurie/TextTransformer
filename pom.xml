@@ -43,11 +43,16 @@
             <artifactId>json-path</artifactId>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.jetbrains</groupId>
+            <artifactId>annotations</artifactId>
+            <version>RELEASE</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
 
     <build>
-    	<finalName>TextTransformer</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
