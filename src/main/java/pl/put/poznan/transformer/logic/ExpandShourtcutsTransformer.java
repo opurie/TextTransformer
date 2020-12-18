@@ -1,6 +1,4 @@
-package pl.put.poznan.transformer.logic.transforms;
-
-import pl.put.poznan.transformer.logic.TextTransformerInterface;
+package pl.put.poznan.transformer.logic;
 
 import java.util.HashMap;
 import java.util.Map;
