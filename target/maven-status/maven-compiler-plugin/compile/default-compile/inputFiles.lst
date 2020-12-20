@@ -1,3 +1,7 @@
-/home/mister_hz/sharaga/io/TextTransformer/src/main/java/pl/put/poznan/transformer/app/TextTransformerApplication.java
-/home/mister_hz/sharaga/io/TextTransformer/src/main/java/pl/put/poznan/transformer/rest/TextTransformerController.java
-/home/mister_hz/sharaga/io/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/TextTransformer.java
+/home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/app/TextTransformerApplication.java
+/home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/TextTransformer.java
+/home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/TextTransformerDecorator.java
+/home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/rest/TextTransformerController.java
+/home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/transforms/exampleTransformer.java
+/home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/TextTransformerInterface.java
+

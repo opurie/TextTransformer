@@ -1,3 +1,6 @@
-pl/put/poznan/transformer/logic/TextTransformer.class
+pl/put/poznan/transformer/logic/TextTransformerInterface.class
 pl/put/poznan/transformer/app/TextTransformerApplication.class
 pl/put/poznan/transformer/rest/TextTransformerController.class
+pl/put/poznan/transformer/logic/transforms/exampleTransformer.class
+pl/put/poznan/transformer/logic/TextTransformerDecorator.class
+pl/put/poznan/transformer/logic/TextTransformer.class
