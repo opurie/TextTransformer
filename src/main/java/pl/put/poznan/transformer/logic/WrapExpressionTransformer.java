@@ -3,32 +3,32 @@ package pl.put.poznan.transformer.logic;
 import java.util.HashMap;
 import java.util.Map;
 
-public class WrapExpressionTransformer implements TextTransformerInterface {
+public class ExpandShourtcutsTransformer implements TextTransformerInterface {
 
     private final TextTransformerInterface decorator;
 
-    public WrapExpressionTransformer(TextTransformerInterface decorator) {
+    public ExpandShourtcutsTransformer(TextTransformerInterface decorator) {
         this.decorator = decorator;
     }
 
 
     private static final Map<String, String> expressionsMap = new HashMap<>() {{
-        put("np.", "na przykład");
-        put(" dr ", " doktor ");
-        put("mgr", "magister");
-        put("prof.", "profesor");
-        put("inż.", "inżynier");
-        put("dyr", "dyrektor");
-        put("płk", "pułkownik");
-        put("mjr", "major");
-        put("gen.", "generał");
-        put("itd.", "i tak dalej");
-        put("itp.", "i tym podobne");
-        put("sz. p.", "Szanowny/a Pan(i)");
-        put("cm", "centymetrów");
-        put("c.d.n.", "ciąg dalszy nastąpi.");
-        put("zw", "zaraz wracam");
-        put("w sumie", "wsm");
+        put("na przykład", "np.");
+        put("doktor ", "dr ");
+        put("magister", "mgr");
+        put("profesor", "prof.");
+        put("inżynier", "inż.");
+        put("dyrektor", "dyr");
+        put("pułkownik", "płk");
+        put("major", "mjr");
+        put("generał", "gen.");
+        put("i tak dalej", "itd.");
+        put("i tym podobne", "itp.");
+        put("Szanowny/a Pan(i)", "sz. p.");
+        put("centymetrów", "cm");
+        put("ciąg dalszy nastąpi.", "c.d.n.");
+        put("zaraz wracam", "zw");
+        put("wsm", "w sumie");
     }};
 
     @Override
@@ -41,5 +41,4 @@ public class WrapExpressionTransformer implements TextTransformerInterface {
         }
         return text;
     }
-
 }
