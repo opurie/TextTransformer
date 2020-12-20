@@ -6,7 +6,7 @@ import org.junit.jupiter.api.Test;
 
 class RemoveRepeatingTransformTest {
 
-    TextTransformerInterface textTransformerInterface = new RemoveRepeatingTransform();
+    TextTransformerInterface textTransformerInterface = new RemoveRepeatingTransform(new TextTransformer());
 
     @Test
     public void shouldRemoveDo() {

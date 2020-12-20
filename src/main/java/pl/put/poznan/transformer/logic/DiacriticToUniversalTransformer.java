@@ -4,6 +4,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class DiacriticToUniversalTransformer implements TextTransformerInterface {
+
+    private final TextTransformerInterface decorator;
+
+    public DiacriticToUniversalTransformer(TextTransformerInterface decorator) {
+        this.decorator = decorator;
+    }
+
     private static final Map<Character, Character> diacriticalsMap = new HashMap<>() {{
         put('ą', 'a');
         put('ć', 'c');
@@ -18,6 +25,8 @@ public class DiacriticToUniversalTransformer implements TextTransformerInterface
 
     @Override
     public String transform(String text) {
+        text = decorator.transform(text);
+
         for (Character character : diacriticalsMap.keySet())
             text = text.replaceAll(character.toString(), diacriticalsMap.get(character).toString());
 
