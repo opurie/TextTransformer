@@ -1,5 +1,9 @@
 package pl.put.poznan.transformer.logic;
 
+/**
+ * Class that capitalizes words
+ */
+
 public class CapitalizeTransformer implements TextTransformerInterface{
 
     private final TextTransformerInterface decorator;
@@ -7,6 +11,11 @@ public class CapitalizeTransformer implements TextTransformerInterface{
     public CapitalizeTransformer(TextTransformerInterface decorator) {
         this.decorator = decorator;
     }
+
+    /**
+     * @param text string to be transformed
+     * @return string with capitalized words
+     */
 
     @Override
     public String transform(String text) {

@@ -1,16 +1,20 @@
 package pl.put.poznan.transformer.logic;
 
+
 import java.util.HashMap;
 import java.util.Map;
 
-public class ExpandShourtcutsTransformer implements TextTransformerInterface {
+/**
+ * Class that replaces expressions with abbreviations
+ */
+
+public class WrapExpressionTransformer implements TextTransformerInterface {
 
     private final TextTransformerInterface decorator;
 
-    public ExpandShourtcutsTransformer(TextTransformerInterface decorator) {
+    public WrapExpressionTransformer(TextTransformerInterface decorator) {
         this.decorator = decorator;
     }
-
 
     private static final Map<String, String> expressionsMap = new HashMap<>() {{
         put("na przykład", "np.");
@@ -30,6 +34,11 @@ public class ExpandShourtcutsTransformer implements TextTransformerInterface {
         put("zaraz wracam", "zw");
         put("wsm", "w sumie");
     }};
+
+    /**
+     * @param text string to be transformed
+     * @return string with abbreviations
+     */
 
     @Override
     public String transform(String text) {

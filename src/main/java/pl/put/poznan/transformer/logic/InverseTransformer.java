@@ -1,11 +1,20 @@
 package pl.put.poznan.transformer.logic;
 
+/**
+ * Class that inverts text order
+ */
+
 public class InverseTransformer implements TextTransformerInterface{
     private final TextTransformerInterface decorator;
 
     public InverseTransformer(TextTransformerInterface decorator) {
         this.decorator = decorator;
     }
+
+    /**
+     * @param text string to be transformed
+     * @return reversed string
+     */
 
     @Override
     public String transform(String text) {

@@ -67,7 +67,7 @@ public class TextTransformerController {
             case "removeRepetition" : return new RemoveRepeatingTransform(transform);
             case "upper" : return new UpperCaseTransformer(transform);
             case "invert" : return new InverseTransformer(transform);
-            case "expandShortcuts" : return new ExpandShourtcutsTransformer(transform);
+            case "expandShortcuts" : return new WrapExpressionTransformer(transform);
 
             default: return transform;
         }

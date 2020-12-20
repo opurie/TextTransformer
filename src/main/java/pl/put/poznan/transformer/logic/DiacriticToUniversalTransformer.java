@@ -3,6 +3,10 @@ package pl.put.poznan.transformer.logic;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that removes Polish diacritical marks
+ */
+
 public class DiacriticToUniversalTransformer implements TextTransformerInterface {
 
     private final TextTransformerInterface decorator;
@@ -22,6 +26,11 @@ public class DiacriticToUniversalTransformer implements TextTransformerInterface
         put('ź', 'z');
         put('ż', 'z');
     }};
+
+    /**
+     * @param text string to be transformed
+     * @return string without diacritical marks
+     */
 
     @Override
     public String transform(String text) {

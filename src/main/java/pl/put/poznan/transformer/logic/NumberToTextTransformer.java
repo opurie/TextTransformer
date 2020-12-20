@@ -4,13 +4,16 @@ import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Class that replaces numbers with words
+ */
+
 public class NumberToTextTransformer implements TextTransformerInterface {
     private final TextTransformerInterface decorator;
 
     public NumberToTextTransformer(TextTransformerInterface decorator) {
         this.decorator = decorator;
     }
-
 
     private static final Map<Integer, String> numbersMap = new HashMap<>() {{
         put(0, "zero");
@@ -53,6 +56,12 @@ public class NumberToTextTransformer implements TextTransformerInterface {
         put(1000, "tysiąc");
     }};
 
+    /**
+     * Converts number to word(s)
+     * @param value number to be converted
+     * @return string
+     */
+
     private String fitNumber(int value) {
 
         int units, tens, hundreds, thousands, help;
@@ -81,6 +90,11 @@ public class NumberToTextTransformer implements TextTransformerInterface {
         }
         return result;
     }
+
+    /**
+     * @param text string to be transformed
+     * @return string with replaced numbers
+     */
 
     @Override
     public String transform(String text) {
