@@ -7,17 +7,35 @@ import pl.put.poznan.transformer.logic.TextTransformer;
 import pl.put.poznan.transformer.logic.transforms.*;
 
 import java.util.Arrays;
+import java.util.Map;
 
 
 @RestController
-@RequestMapping("/{text}")
+@RequestMapping("/transform")
 public class TextTransformerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TextTransformerController.class);
 
-    @RequestMapping(method = RequestMethod.GET, produces = "application/json")
-    public String get(@PathVariable String text,
-                              @RequestParam(value="transforms", defaultValue="upper") String[] transforms) {
+//    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+//    public String post(@RequestParam(value="text", defaultValue="") String text,
+//                              @RequestParam(value="transforms", defaultValue="upper") String[] transforms) {
+//
+//        // log the parameters
+//        logger.debug(text);
+//        logger.debug(Arrays.toString(transforms));
+//        /* perform the transformation, you should run your logic here, below is just a silly example */
+//        return createTransformChain(transforms).transform(text);
+//    }
+
+    @RequestMapping(method = RequestMethod.POST, produces = "application/json")
+    public String post(@RequestBody Map<String, String> payload) {
+
+        String text = payload.get("text");
+        String transform = payload.get("transformation");
+
+        // temporary solution for testing, needs to be fixed
+        String[] transforms = new String[1];
+        transforms[0] = transform;
 
         // log the parameters
         logger.debug(text);
