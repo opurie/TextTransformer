@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TextTransformer GUI</title>
+    <link href="index.css" rel="stylesheet">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <script src="index.js"></script>
+</head>
+<body>
+    <div id="root">
+        <div id="main">
+            <nav id="header">
+                <h1>TextTransformer GUI</h1>
+            </nav>
+            <div class="input-item">
+                <textarea id="input" placeholder="Wpisz tekst..." cols="100" rows="16"></textarea>
+            </div>
+            <div class="input-item">
+                <div id="submit-container">
+                    <select id="transformation-selector">
+                        <option value="lower">Convert to lowercase</option>
+                        <option value="upper">Convert to uppercase</option>
+                        <option value="3">Capitalize</option>
+                        <option value="4">Inverse</option>
+                        <option value="5">Remove duplicates</option>
+                        <option value="6">Expand shortcuts</option>
+                        <option value="7">Make shortcuts</option>
+                        <option value="8">Convert numbers to text</option>
+                        <option value="9">Escape LaTeX special characters</option>
+                    </select>
+                    <button onclick="submitForm()">Submit</button>
+                </div>
+            </div>
+            <div class="input-item">
+                <textarea id="result" cols="100" rows="16" disabled></textarea>
+            </div>
+        </div>
+    </div>
+</body>
