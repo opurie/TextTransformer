@@ -1,5 +1,9 @@
 package pl.put.poznan.transformer.logic;
 
+/**
+ * Class that escapes LateX special characters
+ */
+
 public class LatexTransformer implements TextTransformerInterface{
     private final TextTransformerInterface decorator;
 
@@ -7,9 +11,12 @@ public class LatexTransformer implements TextTransformerInterface{
         this.decorator = decorator;
     }
 
-
-
     private static final char[] latexSymbols = {'\\', '&', '%', '$', '#', '_', '{', '}', '~', '^'};
+
+    /**
+     * @param text string to be transformed
+     * @return LaTeX compatible string
+     */
 
     @Override
     public String transform(String text) {

@@ -6,6 +6,10 @@ import java.util.Objects;
 import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
+/**
+ * Class that removes repetitions
+ */
+
 public class RemoveRepeatingTransform implements TextTransformerInterface {
     private final TextTransformerInterface decorator;
 
@@ -13,6 +17,10 @@ public class RemoveRepeatingTransform implements TextTransformerInterface {
         this.decorator = decorator;
     }
 
+    /**
+     * @param text string to be transformed
+     * @return string without repetitions
+     */
 
     @Override
     public String transform(String text) {
