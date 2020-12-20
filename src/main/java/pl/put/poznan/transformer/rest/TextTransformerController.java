@@ -64,11 +64,15 @@ public class TextTransformerController {
 
     private static TextTransformerInterface decorator(String name, TextTransformerInterface transform){
         switch(name){
-            case "removeRepetition" : return new RemoveRepeatingTransform(transform);
+            case "lower" : return new LowerCaseTransformer(transform);
             case "upper" : return new UpperCaseTransformer(transform);
+            case "capitalize" : return new CapitalizeTransformer(transform);
             case "invert" : return new InverseTransformer(transform);
-            case "expandShortcuts" : return new WrapExpressionTransformer(transform);
-
+            case "removeRepetition" : return new RemoveRepeatingTransform(transform);
+            case "expandAbbreviations" : return new ExpandAbbreviationTransformer(transform);
+            case "makeAbbreviations" : return new WrapExpressionTransformer(transform);
+            case "numbersToText" : return new NumberToTextTransformer(transform);
+            case "latex" : return new LatexTransformer(transform);
             default: return transform;
         }
     }
