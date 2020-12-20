@@ -4,6 +4,14 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class WrapExpressionTransformer implements TextTransformerInterface {
+
+    private final TextTransformerInterface decorator;
+
+    public WrapExpressionTransformer(TextTransformerInterface decorator) {
+        this.decorator = decorator;
+    }
+
+
     private static final Map<String, String> expressionsMap = new HashMap<>() {{
         put("np.", "na przykład");
         put(" dr ", " doktor ");
@@ -25,6 +33,8 @@ public class WrapExpressionTransformer implements TextTransformerInterface {
 
     @Override
     public String transform(String text) {
+        text = decorator.transform(text);
+
         for (String exp : expressionsMap.keySet()) {
             while(text.contains(exp))
                 text = text.replaceFirst(exp, expressionsMap.get(exp));

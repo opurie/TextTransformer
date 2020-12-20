@@ -5,6 +5,13 @@ import java.util.HashMap;
 import java.util.Map;
 
 public class NumberToTextTransformer implements TextTransformerInterface {
+    private final TextTransformerInterface decorator;
+
+    public NumberToTextTransformer(TextTransformerInterface decorator) {
+        this.decorator = decorator;
+    }
+
+
     private static final Map<Integer, String> numbersMap = new HashMap<>() {{
         put(0, "zero");
         put(1, "jeden");
@@ -47,6 +54,7 @@ public class NumberToTextTransformer implements TextTransformerInterface {
     }};
 
     private String fitNumber(int value) {
+
         int units, tens, hundreds, thousands, help;
         thousands = (value / 1000) * 1000;
         help = value % 1000;
@@ -76,6 +84,7 @@ public class NumberToTextTransformer implements TextTransformerInterface {
 
     @Override
     public String transform(String text) {
+        text = decorator.transform(text);
 
         String numberText;
         int numberVal;

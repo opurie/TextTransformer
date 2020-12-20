@@ -1,8 +1,17 @@
 package pl.put.poznan.transformer.logic;
 
 public class CapitalizeTransformer implements TextTransformerInterface{
+
+    private final TextTransformerInterface decorator;
+
+    public CapitalizeTransformer(TextTransformerInterface decorator) {
+        this.decorator = decorator;
+    }
+
     @Override
     public String transform(String text) {
+        text = decorator.transform(text);
+
         String[] textArray = text.split(" ");
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < textArray.length; i++) {
