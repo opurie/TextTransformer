@@ -13,6 +13,6 @@ submitForm = () => {
         transformation: transformation
     }).then((response) => {
         console.log(response);
-        document.getElementById("result").value = response.data;
+        document.getElementById("result").value = response.data["result"];
     });
 }

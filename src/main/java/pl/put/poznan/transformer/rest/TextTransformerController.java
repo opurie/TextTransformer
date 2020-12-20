@@ -3,6 +3,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
 import pl.put.poznan.transformer.logic.*;
+import pl.put.poznan.transformer.rest.response.JSONResponse;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -26,7 +27,7 @@ public class TextTransformerController {
 //    }
 
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
-    public String post(@RequestBody Map<String, String> payload) {
+    public JSONResponse post(@RequestBody Map<String, String> payload) {
 
         String text = payload.get("text");
         String transform = payload.get("transformation");
@@ -39,7 +40,8 @@ public class TextTransformerController {
         logger.debug(text);
         logger.debug(Arrays.toString(transforms));
         /* perform the transformation, you should run your logic here, below is just a silly example */
-        return createTransformChain(transforms).transform(text);
+        String res = createTransformChain(transforms).transform(text);
+        return new JSONResponse(res);
     }
 
     /*@RequestMapping(method = RequestMethod.POST, produces = "application/json")

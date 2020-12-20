@@ -4,6 +4,7 @@
 /home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/LowerCaseTransformer.java
 /home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/app/TextTransformerApplication.java
 /home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/UpperCaseTransformer.java
+/home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/rest/response/JSONResponse.java
 /home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/DiacriticToUniversalTransformer.java
 /home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/rest/TextTransformerController.java
 /home/marek/dev/io/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/LatexTransformer.java
