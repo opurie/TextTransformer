@@ -2,9 +2,7 @@ package pl.put.poznan.transformer.rest;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.bind.annotation.*;
-import pl.put.poznan.transformer.logic.TextTransformerInterface;
-import pl.put.poznan.transformer.logic.TextTransformer;
-import pl.put.poznan.transformer.logic.transforms.*;
+import pl.put.poznan.transformer.logic.*;
 
 import java.util.Arrays;
 import java.util.Map;
@@ -62,10 +60,14 @@ public class TextTransformerController {
         return chain;
     }
 
-    private static TextTransformerInterface decorator(String name, TextTransformerInterface TInterface){
+    private static TextTransformerInterface decorator(String name, TextTransformerInterface transform){
         switch(name){
-            case "example": return new exampleTransformer(TInterface);
-            default: return TInterface;
+            case "removeRepetition" : return new RemoveRepeatingTransform(transform);
+            case "upper" : return new UpperCaseTransformer(transform);
+            case "invert" : return new InverseTransformer(transform);
+            case "expandShortcuts" : return new ExpandShourtcutsTransformer(transform);
+
+            default: return transform;
         }
     }
 
