@@ -50,9 +50,7 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
         put("Gen.", "Generał");
         put("Itd.", "I tak dalej");
         put("Itp.", "I tym podobne");
-        put("Sz.P.", "Szanowny Pan/Szanowna Pani");
         put("Cm", "Centymetrów");
-        put("c.d.n.", "Ciąg dalszy nastąpi.");
         put("Zw", "Zaraz wracam");
         put("Wsm", "W sumie");
     }};
@@ -74,5 +72,4 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
         }
         return text;
     }
-//    Tu Sz.P. robi takie coś, dr lubi zjeść. Mjr jest zdenerwowany a pROf. nie.
 }
