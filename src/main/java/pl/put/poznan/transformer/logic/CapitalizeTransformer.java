@@ -1,6 +1,5 @@
 package pl.put.poznan.transformer.logic;
 
-import sun.util.resources.cldr.zh.CalendarData_zh_Hans_CN;
 
 /**
  * Class that capitalizes words
