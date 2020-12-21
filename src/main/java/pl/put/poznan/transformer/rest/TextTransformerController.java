@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * Main controller of an application
- * It is responsible for API communication and all transformations
+ * It is responsible for API communication and text transformations
  */
 @RestController
 @RequestMapping("/transform")
@@ -18,6 +18,11 @@ public class TextTransformerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TextTransformerController.class);
 
+    /**
+     * Method for handling incoming POST requests
+     * @param payload request body (application/json), must contain fields: transformation (name of transformation to be performed), text (text to be transformed)
+     * @return response with transformed text (field result) as JSONResponse
+     */
     @RequestMapping(method = RequestMethod.POST, produces = "application/json")
     public JSONResponse post(@RequestBody Map<String, String> payload) {
 
