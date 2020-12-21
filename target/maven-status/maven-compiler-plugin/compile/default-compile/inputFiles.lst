@@ -13,4 +13,5 @@
 /home/opurie/io_sprint/ioprojectarchitecture/TextTransformer/src/main/java/pl/put/poznan/transformer/rest/WebController.java
 /home/opurie/io_sprint/ioprojectarchitecture/TextTransformer/src/main/java/pl/put/poznan/transformer/app/TextTransformerApplication.java
 /home/opurie/io_sprint/ioprojectarchitecture/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/WrapExpressionTransformer.java
+/home/opurie/io_sprint/ioprojectarchitecture/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/FloatToFixedTransformer.java
 /home/opurie/io_sprint/ioprojectarchitecture/TextTransformer/src/main/java/pl/put/poznan/transformer/logic/InverseTransformer.java
