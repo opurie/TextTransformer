@@ -2,6 +2,8 @@ package pl.put.poznan.transformer.logic;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class that expands some abbreviations
@@ -17,7 +19,7 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
 
     private static final Map<String, String> expressionsMap = new HashMap<>() {{
         put("np.", "na przykład");
-        put(" dr ", " doktor ");
+        put("dr", "doktor");
         put("mgr", "magister");
         put("prof.", "profesor");
         put("inż.", "inżynier");
@@ -27,11 +29,11 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
         put("gen.", "generał");
         put("itd.", "i tak dalej");
         put("itp.", "i tym podobne");
-        put("sz. p.", "Szanowny/a Pan(i)");
+        put("Sz. P.", "Szanowny Pan/Szanowna Pani");
         put("cm", "centymetrów");
         put("c.d.n.", "ciąg dalszy nastąpi.");
         put("zw", "zaraz wracam");
-        put("w sumie", "wsm");
+        put("wsm", "w sumie");
     }};
 
     /**
@@ -44,8 +46,10 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
         text = decorator.transform(text);
 
         for (String exp : expressionsMap.keySet()) {
-            while(text.contains(exp))
-                text = text.replaceFirst(exp, expressionsMap.get(exp));
+            String pat = "\\b" + exp + "\\b";
+            Pattern expPattern = Pattern.compile(pat, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = expPattern.matcher(text);
+            text = matcher.replaceAll(expressionsMap.get(exp));
         }
         return text;
     }
