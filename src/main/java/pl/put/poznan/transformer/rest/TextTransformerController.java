@@ -10,7 +10,7 @@ import java.util.Map;
 
 /**
  * Main controller of an application
- * It is responsible for API communication and all transformations
+ * It is responsible for API communication and all text transformations
  */
 @RestController
 @RequestMapping("/transform")
