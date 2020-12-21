@@ -3,6 +3,8 @@ package pl.put.poznan.transformer.logic;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 /**
  * Class that replaces expressions with abbreviations
@@ -18,7 +20,7 @@ public class WrapExpressionTransformer implements TextTransformerInterface {
 
     private static final Map<String, String> expressionsMap = new HashMap<>() {{
         put("na przykład", "np.");
-        put("doktor ", "dr ");
+        put("doktor", "dr");
         put("magister", "mgr");
         put("profesor", "prof.");
         put("inżynier", "inż.");
@@ -28,11 +30,12 @@ public class WrapExpressionTransformer implements TextTransformerInterface {
         put("generał", "gen.");
         put("i tak dalej", "itd.");
         put("i tym podobne", "itp.");
-        put("Szanowny/a Pan(i)", "sz. p.");
+        put("Szanowny Pan", "Sz. P.");
+        put("Szanowna Pani", "Sz. P.");
         put("centymetrów", "cm");
         put("ciąg dalszy nastąpi.", "c.d.n.");
         put("zaraz wracam", "zw");
-        put("wsm", "w sumie");
+        put("w sumie", "wsm");
     }};
 
     /**
@@ -40,13 +43,16 @@ public class WrapExpressionTransformer implements TextTransformerInterface {
      * @return string with abbreviations
      */
 
+
     @Override
     public String transform(String text) {
         text = decorator.transform(text);
 
         for (String exp : expressionsMap.keySet()) {
-            while(text.contains(exp))
-                text = text.replaceFirst(exp, expressionsMap.get(exp));
+            String pat = "\\b" + exp + "\\b";
+            Pattern expPattern = Pattern.compile(pat, Pattern.CASE_INSENSITIVE);
+            Matcher matcher = expPattern.matcher(text);
+            text = matcher.replaceAll(expressionsMap.get(exp));
         }
         return text;
     }
