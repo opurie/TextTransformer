@@ -102,13 +102,16 @@ public class NumberToTextTransformer implements TextTransformerInterface {
 
         String numberText;
         int numberVal;
-        String str = text.replaceAll("[^-?0-9]+", " ");
+        String str = text.replaceAll("[^-?0-9]+", " ").trim();
         System.out.println((Arrays.asList(str.trim().split(" "))).toString());
-        for(String i : str.trim().split(" ")) {
-            numberVal = Integer.parseInt(i);
-            numberText = fitNumber(numberVal);
-            text = text.replaceFirst(i, numberText);
+        if(str.length() > 0) {
+            for (String i : str.split(" ")) {
+                numberVal = Integer.parseInt(i);
+                numberText = fitNumber(numberVal);
+                text = text.replaceFirst(i, numberText);
+            }
         }
+
         return text;
     }
 
