@@ -3,16 +3,7 @@
          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
     <modelVersion>4.0.0</modelVersion>
-    
-    <reporting>
-        <plugins>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-javadoc-plugin</artifactId>
-                <version>3.2.0</version>
-            </plugin>
-        </plugins>
-    </reporting>
+
 
     <parent>
         <groupId>org.springframework.boot</groupId>
@@ -23,12 +14,13 @@
     <groupId>pl.put.poznan</groupId>
     <artifactId>TextTransformer</artifactId>
     <version>1.0</version>
+    <packaging>jar</packaging>
 
 	<properties>
         <java.version>11</java.version>
     </properties>
 
-    
+
     <dependencies>
         <dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -46,7 +38,7 @@
 				</exclusion>
 			</exclusions>
 		</dependency>
-		
+
         <dependency>
             <groupId>com.jayway.jsonpath</groupId>
             <artifactId>json-path</artifactId>
@@ -68,6 +60,11 @@
             <version>5.6.2</version>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>org.slf4j</groupId>
+            <artifactId>slf4j-api</artifactId>
+            <version>1.7.25</version>
+        </dependency>
 
     </dependencies>
 
@@ -80,7 +77,7 @@
             </plugin>
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
+                <artifactId>maven-javadoc-plugin</artifactId>
                 <version>3.2.0</version>
             </plugin>
         </plugins>
@@ -98,6 +95,15 @@
             <url>https://repo.spring.io/libs-release</url>
         </pluginRepository>
     </pluginRepositories>
+
+    <reporting>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-javadoc-plugin</artifactId>
+                <version>3.1.1</version></plugin>
+        </plugins>
+    </reporting>
 
 
 </project>
