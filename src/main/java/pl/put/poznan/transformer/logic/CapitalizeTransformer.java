@@ -1,5 +1,7 @@
 package pl.put.poznan.transformer.logic;
 
+import sun.util.resources.cldr.zh.CalendarData_zh_Hans_CN;
+
 /**
  * Class that capitalizes words
  */
@@ -21,13 +23,13 @@ public class CapitalizeTransformer implements TextTransformerInterface{
     public String transform(String text) {
         text = decorator.transform(text);
 
-        String[] textArray = text.split(" ");
-        StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < textArray.length; i++) {
-            String s = textArray[i];
-            sb.append(s.substring(0, 1).toUpperCase());
-            sb.append(s.substring(1));
-            if(i != textArray.length - 1) sb.append(" ");
+        StringBuilder sb = new StringBuilder(text);
+        for(int i = 0; i < text.length(); i++) {
+            if(i == 0 || Character.isWhitespace(sb.charAt(i - 1))) {
+                char c = sb.charAt(i);
+                c = Character.toUpperCase(c);
+                sb.setCharAt(i, c);
+            }
         }
         return sb.toString();
     }
