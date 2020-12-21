@@ -25,6 +25,15 @@ public class DiacriticToUniversalTransformer implements TextTransformerInterface
         put('ś', 's');
         put('ź', 'z');
         put('ż', 'z');
+        put('Ą', 'A');
+        put('Ć', 'C');
+        put('Ę', 'E');
+        put('Ł', 'L');
+        put('Ń', 'N');
+        put('Ó', 'O');
+        put('Ś', 'S');
+        put('Ż', 'Z');
+        put('Ź', 'Z');
     }};
 
     /**

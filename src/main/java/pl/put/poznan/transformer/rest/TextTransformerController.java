@@ -60,12 +60,13 @@ public class TextTransformerController {
             case "removeRepetition" : return new RemoveRepeatingTransform(transform);
             case "upper" : return new UpperCaseTransformer(transform);
             case "invert" : return new InverseTransformer(transform);
-            case "expandShortcuts" : return new ExpandAbbreviationTransformer(transform);
+            case "expandAbbreviation" : return new ExpandAbbreviationTransformer(transform);
             case "lower":return new LowerCaseTransformer(transform);
             case "capitalize": return new CapitalizeTransformer(transform);
-            case "makeShortcuts": return new WrapExpressionTransformer(transform);
+            case "makeAbbreviation": return new WrapExpressionTransformer(transform);
             case "numbersToText": return new NumberToTextTransformer(transform);
             case "latex": return new LatexTransformer(transform);
+            case "removeDiacritical" : return new DiacriticToUniversalTransformer(transform);
             default: return transform;
         }
     }
