@@ -28,6 +28,7 @@ public class InverseTransformer implements TextTransformerInterface{
             if(Character.isUpperCase(original)) c = Character.toUpperCase(c);
             sb.append(c);
         }
-        return sb.toString();
+        String r = sb.toString();
+        return r.trim();
     }
 }
