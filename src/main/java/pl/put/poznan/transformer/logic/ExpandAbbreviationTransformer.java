@@ -38,6 +38,23 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
         put("c.d.n.", "ciąg dalszy nastąpi.");
         put("zw", "zaraz wracam");
         put("wsm", "w sumie");
+
+        put("Np.", "Na przykład");
+        put("Dr", "Doktor");
+        put("Mgr", "Magister");
+        put("Prof.", "Profesor");
+        put("Inż.", "Inżynier");
+        put("Dyr", "Dyrektor");
+        put("Płk", "Pułkownik");
+        put("Mjr", "Major");
+        put("Gen.", "Generał");
+        put("Itd.", "I tak dalej");
+        put("Itp.", "I tym podobne");
+        put("Sz.P.", "Szanowny Pan/Szanowna Pani");
+        put("Cm", "Centymetrów");
+        put("c.d.n.", "Ciąg dalszy nastąpi.");
+        put("Zw", "Zaraz wracam");
+        put("Wsm", "W sumie");
     }};
 
     /**
@@ -51,7 +68,7 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
 
         for (String exp : expressionsMap.keySet()) {
             String pat = "\\b" + exp;
-            Pattern expPattern = Pattern.compile(pat, Pattern.CASE_INSENSITIVE);
+            Pattern expPattern = Pattern.compile(pat);
             Matcher matcher = expPattern.matcher(text);
             text = matcher.replaceAll(expressionsMap.get(exp));
         }
