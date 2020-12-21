@@ -91,6 +91,7 @@ public class FloatToFixedTransformer implements TextTransformerInterface {
      *
      * @param text string to be transformed
      * @return string containing floating point numbers rounded(HALF-EVEN) to 2 decimal points
+     * and then converts them to text
      */
 
     @Override
