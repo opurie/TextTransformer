@@ -30,8 +30,9 @@ public class WrapExpressionTransformer implements TextTransformerInterface {
         put("generał", "gen.");
         put("i tak dalej", "itd.");
         put("i tym podobne", "itp.");
-        put("Szanowny Pan", "Sz. P.");
-        put("Szanowna Pani", "Sz. P.");
+        put("Szanowny Pan/Szanowna Pani", "Sz.P.");
+        put("Szanowna Pani", "Sz.P.");
+        put("Szanowny Pan", "Sz.P.");
         put("centymetrów", "cm");
         put("ciąg dalszy nastąpi.", "c.d.n.");
         put("zaraz wracam", "zw");

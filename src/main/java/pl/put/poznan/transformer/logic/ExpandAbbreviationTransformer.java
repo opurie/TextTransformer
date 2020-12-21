@@ -6,7 +6,11 @@ import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 /**
- * Class that expands some abbreviations
+ * Class expanding all of abbreviations in the given text
+ * to their long form - only those which are included in the predefined set
+ *  { "np.", "dr", "mgr", "prof.", "inż.",
+ *    "dyr", "płk", "mjr", "gen.", "itd.",
+ *    "itp.", "Sz. P.", "cm", "c.d.n.", "zw", "wsm" }
  */
 
 public class ExpandAbbreviationTransformer implements TextTransformerInterface {
@@ -29,7 +33,7 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
         put("gen.", "generał");
         put("itd.", "i tak dalej");
         put("itp.", "i tym podobne");
-        put("Sz. P.", "Szanowny Pan/Szanowna Pani");
+        put("Sz.P.", "Szanowny Pan/Szanowna Pani");
         put("cm", "centymetrów");
         put("c.d.n.", "ciąg dalszy nastąpi.");
         put("zw", "zaraz wracam");
@@ -46,12 +50,12 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
         text = decorator.transform(text);
 
         for (String exp : expressionsMap.keySet()) {
-            String pat = "\\b" + exp + "\\b";
+            String pat = "\\b" + exp;
             Pattern expPattern = Pattern.compile(pat, Pattern.CASE_INSENSITIVE);
             Matcher matcher = expPattern.matcher(text);
             text = matcher.replaceAll(expressionsMap.get(exp));
         }
         return text;
     }
-
+//    Tu Sz.P. robi takie coś, dr lubi zjeść. Mjr jest zdenerwowany a pROf. nie.
 }
