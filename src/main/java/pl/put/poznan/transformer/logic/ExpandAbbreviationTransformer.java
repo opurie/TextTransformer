@@ -22,34 +22,34 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
     }
 
     private static final Map<String, String> expressionsMap = new HashMap<>() {{
-        put("np.", "na przykład");
+        put("np\\.", "na przykład");
         put("dr", "doktor");
         put("mgr", "magister");
-        put("prof.", "profesor");
-        put("inż.", "inżynier");
+        put("prof\\.", "profesor");
+        put("inż\\.", "inżynier");
         put("dyr", "dyrektor");
         put("płk", "pułkownik");
         put("mjr", "major");
-        put("gen.", "generał");
-        put("itd.", "i tak dalej");
-        put("itp.", "i tym podobne");
-        put("Sz.P.", "Szanowny Pan/Szanowna Pani");
+        put("gen\\.", "generał");
+        put("itd\\.", "i tak dalej");
+        put("itp\\.", "i tym podobne");
+        put("Sz\\.P\\.", "Szanowny Pan/Szanowna Pani");
         put("cm", "centymetrów");
-        put("c.d.n.", "ciąg dalszy nastąpi.");
+        put("c\\.d\\.n\\.", "ciąg dalszy nastąpi.");
         put("zw", "zaraz wracam");
         put("wsm", "w sumie");
 
-        put("Np.", "Na przykład");
+        put("Np\\.", "Na przykład");
         put("Dr", "Doktor");
         put("Mgr", "Magister");
-        put("Prof.", "Profesor");
-        put("Inż.", "Inżynier");
+        put("Prof\\.", "Profesor");
+        put("Inż\\.", "Inżynier");
         put("Dyr", "Dyrektor");
         put("Płk", "Pułkownik");
         put("Mjr", "Major");
-        put("Gen.", "Generał");
-        put("Itd.", "I tak dalej");
-        put("Itp.", "I tym podobne");
+        put("Gen\\.", "Generał");
+        put("Itd\\.", "I tak dalej");
+        put("Itp\\.", "I tym podobne");
         put("Cm", "Centymetrów");
         put("Zw", "Zaraz wracam");
         put("Wsm", "W sumie");
