@@ -33,4 +33,4 @@ Application will be available by using **_GUI_** but also by **_REST API_** what
 
 - **Link to sprint and product backlog** - https://docs.google.com/spreadsheets/d/1oIk3Irfk_io74p7xOVZSHcBx9EH_1RhBiMiXhdUYSms/edit?fbclid=IwAR16OSp_07S-jNZBrfpfm6t8Su_cf_lAj1m_DqNe86eDljv3YS3_X0d6GNk#gid=1503080623
 
-- **Link to Trello board ** - https://trello.com/b/IsJvczcp
+- **Link to Trello board** - https://trello.com/b/IsJvczcp
