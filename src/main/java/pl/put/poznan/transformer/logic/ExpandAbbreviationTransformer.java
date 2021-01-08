@@ -23,36 +23,37 @@ public class ExpandAbbreviationTransformer implements TextTransformerInterface {
 
     private static final Map<String, String> expressionsMap = new HashMap<>() {{
         put("np\\.", "na przykład");
-        put("dr", "doktor");
+        put("dr\\b", "doktor");
         put("mgr", "magister");
         put("prof\\.", "profesor");
         put("inż\\.", "inżynier");
-        put("dyr", "dyrektor");
+        put("dyr\\b", "dyrektor");
         put("płk", "pułkownik");
         put("mjr", "major");
         put("gen\\.", "generał");
         put("itd\\.", "i tak dalej");
         put("itp\\.", "i tym podobne");
         put("Sz\\.P\\.", "Szanowny Pan/Szanowna Pani");
-        put("cm", "centymetrów");
+        put("cm\\b", "centymetrów");
         put("c\\.d\\.n\\.", "ciąg dalszy nastąpi.");
-        put("zw", "zaraz wracam");
-        put("wsm", "w sumie");
+        put("zw\\b", "zaraz wracam");
+        put("wsm\\b", "w sumie");
 
         put("Np\\.", "Na przykład");
-        put("Dr", "Doktor");
+        put("Dr\\b", "Doktor ");
         put("Mgr", "Magister");
         put("Prof\\.", "Profesor");
         put("Inż\\.", "Inżynier");
-        put("Dyr", "Dyrektor");
+        put("Dyr\\b", "Dyrektor");
         put("Płk", "Pułkownik");
         put("Mjr", "Major");
         put("Gen\\.", "Generał");
         put("Itd\\.", "I tak dalej");
         put("Itp\\.", "I tym podobne");
-        put("Cm", "Centymetrów");
-        put("Zw", "Zaraz wracam");
-        put("Wsm", "W sumie");
+        put("Cm\\b", "Centymetrów");
+        put("C\\.D\\.N\\.", "CIĄG DALSZY NASTĄPI.");
+        put("Zw\\b", "Zaraz wracam");
+        put("Wsm\\b", "W sumie");
     }};
 
     /**
