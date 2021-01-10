@@ -5,13 +5,21 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 class ExpandAbbreviationTransformerTest {
     private ExpandAbbreviationTransformer expander;
 
     @BeforeEach
     void setUp() {
-        this.expander = new ExpandAbbreviationTransformer(new TextTransformer());
+        this.expander = new ExpandAbbreviationTransformer(new TextTransformerInterface() {
+            @Override
+            public String transform(String text) {
+                return text;
+            }
+        });
     }
 
     @Test
@@ -60,12 +68,29 @@ class ExpandAbbreviationTransformerTest {
     }
 
     @Test
-    void transformHard2() {
-
+    void testMock1() {
+        TextTransformerInterface txtTransfMock = mock(TextTransformerInterface.class);
+        when(txtTransfMock.transform("dyr lubi drzem")).thenReturn("dyr lubi drzem");
+        ExpandAbbreviationTransformer testedExpander = new ExpandAbbreviationTransformer(txtTransfMock);
+        Assertions.assertTrue(testedExpander.transform("dyr lubi drzem").equals("dyrektor lubi drzem"),
+                "Mock1 nie działa" + testedExpander.transform("dyr lubi drzem"));
     }
 
     @Test
-    void transformHard3() {
+    void testMock2() {
+        TextTransformerInterface txtTransfMock = mock(TextTransformerInterface.class);
+        when(txtTransfMock.transform(anyString())).thenReturn("GenGen. to dyr.ektor");
+        ExpandAbbreviationTransformer testedExpander = new ExpandAbbreviationTransformer(txtTransfMock);
+        Assertions.assertTrue(testedExpander.transform("test").equals("GenGen. to dyrektor.ektor"),
+                "Mock2 nie działa" + testedExpander.transform("GenGen. to dyr.ektor"));
+    }
 
+    @Test
+    void testMock3() {
+        TextTransformerInterface txtTransfMock = mock(TextTransformerInterface.class);
+        when(txtTransfMock.transform(anyString())).thenReturn("GenGen. to dyr.ektor");
+        ExpandAbbreviationTransformer testedExpander = new ExpandAbbreviationTransformer(txtTransfMock);
+        Assertions.assertTrue(testedExpander.transform("test").equals("GenGen. to dyrektor.ektor"),
+                "Mock2 nie działa" + testedExpander.transform("GenGen. to dyr.ektor"));
     }
 }
