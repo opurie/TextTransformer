@@ -61,8 +61,10 @@ public class NumberToTextTransformer implements TextTransformerInterface {
      * @return string
      */
 
-    private String fitNumber(int value) {
-
+    private String fitNumber(String val) {
+        int value = Integer.parseInt(val);
+        if(value > 1000 || value < 1)
+            return val;
         int units, tens, hundreds, thousands, help;
         thousands = (value / 1000) * 1000;
         help = value % 1000;
@@ -100,12 +102,12 @@ public class NumberToTextTransformer implements TextTransformerInterface {
         text = decorator.transform(text);
 
         String numberText;
-        int numberVal;
-        String str = text.replaceAll("[^-?0-9]+", " ").trim();
+        String str = text.replaceAll("[^-?0-9]+", "m").trim();
         if(str.length() > 0) {
             for (String i : str.split(" ")) {
-                numberVal = Integer.parseInt(i);
-                numberText = fitNumber(numberVal);
+                if(i.contains("m"))
+                    continue;
+                numberText = fitNumber(i);
                 text = text.replaceFirst(i, numberText);
             }
         }
