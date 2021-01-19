@@ -25,6 +25,11 @@ public class LatexTransformer implements TextTransformerInterface{
         StringBuilder sb = new StringBuilder();
         for(int i = 0; i < text.length(); ++i) {
             char c = text.charAt(i);
+            if(c == '\\'){
+                sb.append(c);
+                sb.append("backslash ");
+                continue;
+            }
             for(char l : latexSymbols) {
                 if(l == c) {
                     sb.append("\\");
