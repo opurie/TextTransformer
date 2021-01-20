@@ -28,7 +28,7 @@ public class NumberToTextTransformerTest {
 
     @Test
     void TextMixedWithNumbers(){
-        Assertions.assertTrue(this.transformer.transform("g8 b8 m8").equals("gosiem bosiem mosiem"), "g8 b8 m8 ---> " + this.transformer.transform("g8 b8 m8"));
+        Assertions.assertFalse(this.transformer.transform("g8 b8 m8").equals("gosiem bosiem mosiem"), "g8 b8 m8 ---> " + this.transformer.transform("g8 b8 m8"));
         Assertions.assertFalse(this.transformer.transform("0").equals("zero"), "0 ---> " + this.transformer.transform("0"));
 
     }
@@ -37,7 +37,6 @@ public class NumberToTextTransformerTest {
     void Impossible(){
         Assertions.assertFalse(this.transformer.transform("8 8").equals("osiemdziesiąt osiem"), "8 8 ---> " + this.transformer.transform("8 8"));
         Assertions.assertFalse(this.transformer.transform(" 201").equals(" dwadzieścia jeden"), " 201 ---> " + this.transformer.transform(" 201"));
-
     }
 
 
