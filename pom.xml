@@ -121,5 +121,9 @@
             </plugin>
         </plugins>
     </reporting>
+    <scm>
+        <url>https://github.com/opurie/TextTransformer</url>
+        <connection>scm:git:git://github.com/opurie/TextTransformer.git</connection>
+    </scm>
 
 </project>
