@@ -35,6 +35,7 @@ public class NumberToTextTransformerTest {
 
     @Test
     void Impossible(){
+        Assertions.assertFalse(this.transformer.transform("8,8").equals("osiemdziesiąt,osiem"), "8,8 ---> " + this.transformer.transform("8,8"));
         Assertions.assertFalse(this.transformer.transform("8 8").equals("osiemdziesiąt osiem"), "8 8 ---> " + this.transformer.transform("8 8"));
         Assertions.assertFalse(this.transformer.transform(" 201").equals(" dwadzieścia jeden"), " 201 ---> " + this.transformer.transform(" 201"));
     }

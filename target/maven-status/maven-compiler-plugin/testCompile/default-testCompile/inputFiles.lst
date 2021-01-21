@@ -1,1 +1,4 @@
+/home/opurie/io_sprint/ioprojectarchitecture/TextTransformer/src/test/java/pl/put/poznan/transformer/logic/RemoveRepeatingTransformTest.java
+/home/opurie/io_sprint/ioprojectarchitecture/TextTransformer/src/test/java/pl/put/poznan/transformer/logic/ExpandAbbreviationTransformerTest.java
+/home/opurie/io_sprint/ioprojectarchitecture/TextTransformer/src/test/java/pl/put/poznan/transformer/logic/NumberToTextTransformerTest.java
 /home/opurie/io_sprint/ioprojectarchitecture/TextTransformer/src/test/java/pl/put/poznan/transformer/rest/TextTransformerControllerTest.java
