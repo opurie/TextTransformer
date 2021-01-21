@@ -1,0 +1,42 @@
+package pl.put.poznan.transformer.logic;
+
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.Test;
+
+import static org.junit.jupiter.api.Assertions.*;
+
+public class CapitalizeTransformerTest {
+    private TextTransformerInterface decorator = new TextTransformer();
+    private CapitalizeTransformer transformer;
+
+    @BeforeEach
+    void setUp() {
+        transformer = new CapitalizeTransformer(decorator);
+    }
+
+    @Test
+    public void textInLowerCaseTest() {
+        assertEquals(transformer.transform("ababagalamaga"), "Ababagalamaga");
+        assertEquals(transformer.transform("lorem ipsum"), "Lorem Ipsum");
+        assertEquals(transformer.transform(""), "");
+    }
+
+    @Test
+    public void textInUpperCaseTest() {
+        assertEquals(transformer.transform("VENI VIDI VICI"), "VENI VIDI VICI");
+        assertEquals(transformer.transform("FOOBAR"), "FOOBAR");
+    }
+
+    @Test
+    public void textInMixedCaseTest() {
+        assertEquals(transformer.transform("coGiTo erGo SuM"), "CoGiTo ErGo SuM");
+        assertEquals(transformer.transform("AbRaCaDaBrA"), "AbRaCaDaBrA");
+    }
+
+    @Test
+    public void textWithNonLettersTest() {
+        assertEquals(transformer.transform("21 pilots"), "21 Pilots");
+        assertEquals(transformer.transform("#include stdio.h>"), "#include Stdio.h>");
+        assertEquals(transformer.transform("eat;sleep;repeat"), "Eat;sleep;repeat");
+    }
+}
