@@ -1,5 +1,6 @@
 package pl.put.poznan.transformer.logic;
 
+import java.text.DecimalFormat;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -9,11 +10,21 @@ import java.util.Map;
 
 public class NumberToTextTransformer implements TextTransformerInterface {
     private final TextTransformerInterface decorator;
+    private final boolean isFloating;
 
-    public NumberToTextTransformer(TextTransformerInterface decorator) {
+    /**
+     *
+     * @param decorator - interface used to implement text transformation methods
+     * @param isFloating - boolean false in case of converting integer number, true in case of floating point number (precision of 2)
+     */
+    public NumberToTextTransformer(TextTransformerInterface decorator, boolean isFloating) {
         this.decorator = decorator;
+        this.isFloating = isFloating;
     }
 
+    /**
+     * Map containing numbers in text format from interval <0, 1000.
+     */
     private static final Map<Integer, String> numbersMap = new HashMap<>() {{
         put(0, "zero");
         put(1, "jeden");
@@ -55,19 +66,19 @@ public class NumberToTextTransformer implements TextTransformerInterface {
         put(1000, "tysiąc");
     }};
 
+
     /**
      * Converts number to word(s)
-     * @param value number to be converted
+     * @param value - string representing number to be converted
      * @return string
      */
-
-    private String fitNumber(String val) {
-        int value = Integer.parseInt(val);
-        if(value > 1000 || value < 1)
-            return val;
+    private String fitNumber(String value) {
+        int number = Integer.parseInt(value);
+        if(number > 1999 || number < 1)
+            return value;
         int units, tens, hundreds, thousands, help;
-        thousands = (value / 1000) * 1000;
-        help = value % 1000;
+        thousands = (number / 1000) * 1000;
+        help = number % 1000;
         hundreds = (help / 100) * 100;
         help = help % 100;
         tens = (help / 10) * 10;
@@ -89,6 +100,7 @@ public class NumberToTextTransformer implements TextTransformerInterface {
         } else if (units > 0 || (units == 0 && result.length() == 0)) {
             result += numbersMap.get(units);
         }
+
         return result;
     }
 
@@ -96,22 +108,30 @@ public class NumberToTextTransformer implements TextTransformerInterface {
      * @param text string to be transformed
      * @return string with replaced numbers
      */
-
     @Override
     public String transform(String text) {
         text = decorator.transform(text);
 
-        String numberText;
-        String str = text.replaceAll("[^-?0-9]+", "m").trim();
-        if(str.length() > 0) {
-            for (String i : str.split(" ")) {
-                if(i.contains("m"))
-                    continue;
-                numberText = fitNumber(i);
-                text = text.replaceFirst(i, numberText);
+        if(this.isFloating) {
+            String numberText = text.replaceAll("[^\\d[.]\\d]", ":").trim();
+            DecimalFormat df = new DecimalFormat("0.00");
+            for (String num : numberText.split(":")) {
+                if (num.length() > 0) {
+                    String[] buf = df.format(Double.parseDouble(num)).split("\\.");
+                    String buffer = fitNumber(buf[0]) + (buf[1].equals("00") ? "" : " koma " + fitNumber(buf[1]) + " setnych");
+                    text = text.replaceFirst(num, buffer);
+                }
+            }
+        } else {
+            String numberText = text.replaceAll("[^-?0-9]+", "m").trim();
+            if (numberText.length() > 0) {
+                for (String i : numberText.split(" ")) {
+                    if (i.contains("m"))
+                        continue;
+                    text = text.replaceFirst(i, fitNumber(i));
+                }
             }
         }
-
         return text;
     }
 

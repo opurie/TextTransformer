@@ -69,8 +69,8 @@ public class TextTransformerController {
             case "lower":return new LowerCaseTransformer(transform);
             case "capitalize": return new CapitalizeTransformer(transform);
             case "makeAbbreviation": return new WrapExpressionTransformer(transform);
-            case "numbersToText": return new NumberToTextTransformer(transform);
-            case "floatToInt": return new FloatToFixedTransformer(transform);
+            case "numbersToText": return new NumberToTextTransformer(transform, false);
+            case "floatToInt": return new NumberToTextTransformer(transform, true);
             case "latex": return new LatexTransformer(transform);
             case "removeDiacritical" : return new DiacriticToUniversalTransformer(transform);
             default: return transform;

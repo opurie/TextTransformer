@@ -16,7 +16,7 @@ public class NumberToTextTransformerTest {
 
     @BeforeEach
     void setUp() {
-        transformer = new NumberToTextTransformer(decorator);
+        transformer = new NumberToTextTransformer(decorator, false);
     }
 
     @Test
