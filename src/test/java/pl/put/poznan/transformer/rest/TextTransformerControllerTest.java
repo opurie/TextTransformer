@@ -15,23 +15,20 @@ import static org.mockito.Mockito.*;
 import static org.junit.jupiter.api.Assertions.*;
 
 class TextTransformerControllerTest {
-    private TextTransformerInterface mockedInterface;
     private TextTransformerController controller;
 
     @BeforeEach
     void setUp() {
-        this.mockedInterface = mock(TextTransformerInterface.class);
         this.controller = new TextTransformerController();
     }
 
-//    @AfterEach
-//    void tearDown() {
-//    }
-
     @Test
     void postMock1() {
-        when(this.mockedInterface.transform(anyString())).thenReturn("Lorem Ipsum");
-        this.controller.overrideTransformation("testTransformation", this.mockedInterface);
+        TextTransformerInterface mockedInterface = mock(TextTransformerInterface.class);
+
+        when(mockedInterface.transform(anyString())).thenReturn("Lorem Ipsum");
+        this.controller.overrideTransformation("testTransformation", mockedInterface);
+
         Map<String, String> requestBody = new HashMap<String, String>();
         requestBody.put("text", "lorem ipsum sralalala");
         requestBody.put("transformation", "testTransformation");
@@ -41,9 +38,12 @@ class TextTransformerControllerTest {
 
     @Test
     void postMock2() {
-        when(this.mockedInterface.transform(anyString())).thenReturn("");
-        when(this.mockedInterface.transform("tekst tekst")).thenReturn("tekst");
-        this.controller.overrideTransformation("removeRepetition", this.mockedInterface);
+        TextTransformerInterface mockedInterface = mock(TextTransformerInterface.class);
+
+        when(mockedInterface.transform(anyString())).thenReturn("");
+        when(mockedInterface.transform("tekst tekst")).thenReturn("tekst");
+        this.controller.overrideTransformation("removeRepetition", mockedInterface);
+
         Map<String, String> requestBody = new HashMap<String, String>();
         requestBody.put("text", "tekst tekst");
         requestBody.put("transformation", "removeRepetition");
@@ -53,5 +53,27 @@ class TextTransformerControllerTest {
         requestBody.put("text", "tekst tekst tekst");
         requestBody.put("transformation", "removeRepetition");
         assertNotEquals(new JSONResponse("tekst").getResult(),this.controller.post(requestBody).getResult());
+    }
+
+    @Test
+    void postMock3() {
+        TextTransformerInterface mockedInterface1 = mock(TextTransformerInterface.class);
+        TextTransformerInterface mockedInterface2 = mock(TextTransformerInterface.class);
+
+        when(mockedInterface1.transform("tekst tekst")).thenReturn("tekst");
+        this.controller.overrideTransformation("removeRepetition", mockedInterface1);
+
+        when(mockedInterface1.transform("lorem ipsum")).thenReturn("LOREM IPSUM");
+        this.controller.overrideTransformation("capitalize", mockedInterface2);
+
+        Map<String, String> requestBody = new HashMap<String, String>();
+        requestBody.put("text", "tekst tekst");
+        requestBody.put("transformation", "removeRepetition");
+        assertEquals(new JSONResponse("tekst").getResult(),this.controller.post(requestBody).getResult());
+
+        requestBody = new HashMap<String, String>();
+        requestBody.put("text", "lorem ipsum");
+        requestBody.put("transformation", "capitalize");
+        assertNotEquals(new JSONResponse("LOREM IPSUM").getResult(),this.controller.post(requestBody).getResult());
     }
 }
