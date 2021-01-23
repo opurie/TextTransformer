@@ -12,6 +12,15 @@ import java.util.stream.Collectors;
 
 public class RemoveRepeatingTransform implements TextTransformerInterface {
     private final TextTransformerInterface decorator;
+    private String[] symbols = {".", ",", ":", ";", "?", "!"};
+
+    public String[] generateWords(String word){
+        String[] words = new String[this.symbols.length];
+        for(int i = 0; i < this.symbols.length; i++){
+            words[i] = word + this.symbols[i];
+        }
+        return words;
+    }
 
     public RemoveRepeatingTransform(TextTransformerInterface decorator) {
         this.decorator = decorator;
@@ -30,7 +39,7 @@ public class RemoveRepeatingTransform implements TextTransformerInterface {
         for (int i = 1, splitLength = split.length; i < splitLength; i++) {
             String lastWord = split[i];
             String word = split[i - 1];
-            if (lastWord.equals(word)) {
+            if (lastWord.equals(word) || Arrays.asList(generateWords(word)).contains(lastWord)) {
                 split[i - 1] = null;
             }
         }

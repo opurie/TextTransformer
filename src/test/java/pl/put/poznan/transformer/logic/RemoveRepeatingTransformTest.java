@@ -37,14 +37,23 @@ class RemoveRepeatingTransformTest {
     void testProperRepeats(){
         this.text = "a a aa";
         assertEquals("a aa", this.transformer.transform(this.text));
-
-        this.text = "a a aa";
-        assertEquals("a aa", this.transformer.transform(this.text));
     }
 
     @Test
     void testRepetitionsWithMoreWhitespaces(){
         this.text = "text text  text   text";
         assertEquals("text", this.transformer.transform(this.text));
+    }
+
+    @Test
+    void testRepetitionsWithComma(){
+        this.text = "a a aa aa, abc ab abc abc";
+        assertEquals("a aa, abc ab abc", this.transformer.transform(this.text));
+    }
+
+    @Test
+    void testWordGeneration(){
+        String[] expectedArray = {"dupa.", "dupa,", "dupa:", "dupa;", "dupa?", "dupa!"};
+        assertArrayEquals(expectedArray, this.transformer.generateWords("dupa"));
     }
 }
