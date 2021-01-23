@@ -39,4 +39,10 @@ public class CapitalizeTransformerTest {
         assertEquals(transformer.transform("#include stdio.h>"), "#include Stdio.h>");
         assertEquals(transformer.transform("eat;sleep;repeat"), "Eat;sleep;repeat");
     }
+
+    @Test
+    public void textWithSpaceTabTest() {
+        assertEquals(transformer.transform("obama's\nlast\nname"), "Obama's\nLast\nName");
+        assertEquals(transformer.transform("sponge\tbob\tsquare pants"), "Sponge\tBob\tSquare Pants");
+    }
 }
