@@ -6,6 +6,7 @@ import pl.put.poznan.transformer.logic.*;
 import pl.put.poznan.transformer.rest.response.JSONResponse;
 
 import java.util.Arrays;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -17,6 +18,27 @@ import java.util.Map;
 public class TextTransformerController {
 
     private static final Logger logger = LoggerFactory.getLogger(TextTransformerController.class);
+    private Map<String, TextTransformerInterface> transformationMap;
+
+    public TextTransformerController(){
+        TextTransformerInterface transform = new TextTransformer();
+        this.transformationMap = new HashMap<String, TextTransformerInterface>();
+        this.transformationMap.put("removeRepetition",new RemoveRepeatingTransform(transform));
+        this.transformationMap.put("upper", new UpperCaseTransformer(transform));
+        this.transformationMap.put("invert", new InverseTransformer(transform));
+        this.transformationMap.put("expandAbbreviation" ,  new ExpandAbbreviationTransformer(transform));
+        this.transformationMap.put("lower", new LowerCaseTransformer(transform));
+        this.transformationMap.put("capitalize",  new CapitalizeTransformer(transform));
+        this.transformationMap.put("makeAbbreviation",  new WrapExpressionTransformer(transform));
+        this.transformationMap.put("numbersToText",  new NumberToTextTransformer(transform, false));
+        this.transformationMap.put("floatToInt",  new NumberToTextTransformer(transform, true));
+        this.transformationMap.put("latex",  new LatexTransformer(transform));
+        this.transformationMap.put("removeDiacritical" ,  new DiacriticToUniversalTransformer(transform));
+    }
+
+    public void overrideTransformation(String name, TextTransformerInterface transformation){
+        this.transformationMap.put(name, transformation);
+    }
 
     /**
      * Method for handling incoming POST requests
@@ -47,7 +69,7 @@ public class TextTransformerController {
      * @param transforms is a name of transformation to choose
      * @return an interface representing transform chain
      */
-    private static TextTransformerInterface createTransformChain(String[] transforms){
+    private TextTransformerInterface createTransformChain(String[] transforms){
         TextTransformerInterface chain = new TextTransformer();
         for(String transform : transforms) chain = decorator(transform, chain);
         return chain;
@@ -60,22 +82,27 @@ public class TextTransformerController {
      * @param transform is an interface
      * @return a proper transformer class served as an interface
      */
-    private static TextTransformerInterface decorator(String name, TextTransformerInterface transform){
-        switch(name){
-            case "removeRepetition" : return new RemoveRepeatingTransform(transform);
-            case "upper" : return new UpperCaseTransformer(transform);
-            case "invert" : return new InverseTransformer(transform);
-            case "expandAbbreviation" : return new ExpandAbbreviationTransformer(transform);
-            case "lower":return new LowerCaseTransformer(transform);
-            case "capitalize": return new CapitalizeTransformer(transform);
-            case "makeAbbreviation": return new WrapExpressionTransformer(transform);
-            case "numbersToText": return new NumberToTextTransformer(transform, false);
-            case "floatToInt": return new NumberToTextTransformer(transform, true);
-            case "latex": return new LatexTransformer(transform);
-            case "removeDiacritical" : return new DiacriticToUniversalTransformer(transform);
-            default: return transform;
-        }
+    private TextTransformerInterface decorator(String name, TextTransformerInterface transform){
+//        switch(name){
+//            case "removeRepetition" : return new RemoveRepeatingTransform(transform);
+//            case "upper" : return new UpperCaseTransformer(transform);
+//            case "invert" : return new InverseTransformer(transform);
+//            case "expandAbbreviation" : return new ExpandAbbreviationTransformer(transform);
+//            case "lower":return new LowerCaseTransformer(transform);
+//            case "capitalize": return new CapitalizeTransformer(transform);
+//            case "makeAbbreviation": return new WrapExpressionTransformer(transform);
+//            case "numbersToText": return new NumberToTextTransformer(transform, false);
+//            case "floatToInt": return new NumberToTextTransformer(transform, true);
+//            case "latex": return new LatexTransformer(transform);
+//            case "removeDiacritical" : return new DiacriticToUniversalTransformer(transform);
+//            default: return transform;
+//        }
+        if(this.transformationMap.containsKey(name)) return this.transformationMap.get(name);
+        else return new TextTransformer();
     }
+//    private static TextTransformerInterface decorator(String name, TextTransformerInterface transform){
+//        return transformationMap.get(name);
+//    }
 
 }
 
