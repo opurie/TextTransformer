@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -38,6 +39,14 @@ public class NumberToTextTransformerTest {
         Assertions.assertFalse(this.transformer.transform("8,8").equals("osiemdziesiąt,osiem"), "8,8 ---> " + this.transformer.transform("8,8"));
         Assertions.assertFalse(this.transformer.transform("8 8").equals("osiemdziesiąt osiem"), "8 8 ---> " + this.transformer.transform("8 8"));
         Assertions.assertFalse(this.transformer.transform(" 201").equals(" dwadzieścia jeden"), " 201 ---> " + this.transformer.transform(" 201"));
+    }
+
+    @Test
+    public void mockIt() {
+        TextTransformer mock = mock(TextTransformer.class);
+        when(mock.transform(anyString())).thenAnswer(i -> i.getArguments()[0]);
+        NumberToTextTransformer numberToTextTransformer = new NumberToTextTransformer(mock, false);
+        assertEquals(numberToTextTransformer.transform("213"), "dwieście trzynaście");
     }
 
 

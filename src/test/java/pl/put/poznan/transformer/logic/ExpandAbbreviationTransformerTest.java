@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.mock;
 import static org.mockito.Mockito.when;
@@ -86,5 +87,13 @@ class ExpandAbbreviationTransformerTest {
         ExpandAbbreviationTransformer testedExpander = new ExpandAbbreviationTransformer(decoratorMock);
         Assertions.assertTrue(testedExpander.transform(anyString()).equals("Gengen. i tym podobnebieżnie wyświetlają ile przebiegłeś centymetrów. I tak dalej?"),
                 "Mock3 nie działa ---> " + testedExpander.transform("Gengen. itp.bieżnie wyświetlają ile przebiegłeś cm. Itd.?"));
+    }
+
+    @Test
+    public void mockIt() {
+        TextTransformer mock = mock(TextTransformer.class);
+        when(mock.transform(anyString())).thenAnswer(i -> i.getArguments()[0]);
+        ExpandAbbreviationTransformer expandAbbreviationTransformer = new ExpandAbbreviationTransformer(mock);
+        assertEquals(expandAbbreviationTransformer.transform("dr leczy covid"), "doktor leczy covid");
     }
 }

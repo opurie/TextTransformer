@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class UpperCaseTransformerTest {
     private TextTransformerInterface decorator = new TextTransformer();
@@ -39,4 +42,14 @@ public class UpperCaseTransformerTest {
         assertEquals(transformer.transform("#include <stdio.h>"), "#INCLUDE <STDIO.H>");
         assertEquals(transformer.transform("eat;sleep;repeat"), "EAT;SLEEP;REPEAT");
     }
+
+    @Test
+    public void mockIt() {
+        TextTransformer mock = mock(TextTransformer.class);
+        when(mock.transform(anyString())).thenAnswer(i -> i.getArguments()[0]);
+        UpperCaseTransformer upperCaseTransformer = new UpperCaseTransformer(mock);
+        assertEquals(upperCaseTransformer.transform("Upper_caseD"), "UPPER_CASED");
+    }
+
+
 }
