@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class InverseTransformerTest {
 
@@ -35,5 +38,13 @@ public class InverseTransformerTest {
         assertEquals(transformer.transform("Is That You John Wayne"), "EnyAw nhOj uOy taHt si");
         assertEquals(transformer.transform("WhO sAiD tHaT?"), "?tAht dIas oHw");
         assertEquals(transformer.transform("hOMER pILE"), "eLIP reMOH");
+    }
+
+    @Test
+    public void mockIt() {
+        TextTransformer mock = mock(TextTransformer.class);
+        when(mock.transform(anyString())).thenAnswer(i -> i.getArguments()[0]);
+        InverseTransformer inverseTransformer = new InverseTransformer(mock);
+        assertEquals(inverseTransformer.transform("Latam W Obłokach"), "HcakołBo w matal");
     }
 }

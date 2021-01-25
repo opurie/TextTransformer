@@ -4,6 +4,9 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.anyString;
+import static org.mockito.Mockito.mock;
+import static org.mockito.Mockito.when;
 
 public class CapitalizeTransformerTest {
     private TextTransformerInterface decorator = new TextTransformer();
@@ -44,5 +47,13 @@ public class CapitalizeTransformerTest {
     public void textWithSpaceTabTest() {
         assertEquals(transformer.transform("obama's\nlast\nname"), "Obama's\nLast\nName");
         assertEquals(transformer.transform("sponge\tbob\tsquare pants"), "Sponge\tBob\tSquare Pants");
+    }
+
+    @Test
+    public void mockIt() {
+        TextTransformer mock = mock(TextTransformer.class);
+        when(mock.transform(anyString())).thenAnswer(i -> i.getArguments()[0]);
+        CapitalizeTransformer capitalizeTransformer = new CapitalizeTransformer(mock);
+        assertEquals(capitalizeTransformer.transform("po spacji powinna być duża litera"), "Po Spacji Powinna Być Duża Litera");
     }
 }
