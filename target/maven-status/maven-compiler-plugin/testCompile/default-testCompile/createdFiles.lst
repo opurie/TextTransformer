@@ -1,4 +1,8 @@
 pl/put/poznan/transformer/logic/RemoveRepeatingTransformTest.class
 pl/put/poznan/transformer/logic/NumberToTextTransformerTest.class
 pl/put/poznan/transformer/logic/ExpandAbbreviationTransformerTest.class
+pl/put/poznan/transformer/logic/UpperCaseTransformerTest.class
+pl/put/poznan/transformer/logic/CapitalizeTransformerTest.class
+pl/put/poznan/transformer/logic/LatexTransformerTest.class
 pl/put/poznan/transformer/rest/TextTransformerControllerTest.class
+pl/put/poznan/transformer/logic/InverseTransformerTest.class
