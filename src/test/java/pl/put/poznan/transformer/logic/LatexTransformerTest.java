@@ -34,6 +34,6 @@ public class LatexTransformerTest {
         TextTransformer mock = mock(TextTransformer.class);
         when(mock.transform(anyString())).thenAnswer(i -> i.getArguments()[0]);
         LatexTransformer latexTransformer = new LatexTransformer(mock);
-        assertEquals(latexTransformer.transform("__name__ $$ main"), "\\$\\#sign\\#\\$");
+        assertEquals(latexTransformer.transform("__name__ $$ main"), "\\_\\_name\\_\\_ \\$\\$ main");
     }
 }

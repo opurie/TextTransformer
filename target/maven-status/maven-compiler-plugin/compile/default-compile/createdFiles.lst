@@ -1,14 +1,12 @@
 pl/put/poznan/transformer/logic/TextTransformerInterface.class
 pl/put/poznan/transformer/logic/DiacriticToUniversalTransformer$1.class
 pl/put/poznan/transformer/app/TextTransformerApplication.class
-pl/put/poznan/transformer/logic/FloatToFixedTransformer$1.class
 pl/put/poznan/transformer/rest/response/JSONResponse.class
 pl/put/poznan/transformer/logic/TextTransformer.class
 pl/put/poznan/transformer/logic/LatexTransformer.class
 pl/put/poznan/transformer/logic/NumberToTextTransformer$1.class
 pl/put/poznan/transformer/logic/DiacriticToUniversalTransformer.class
 pl/put/poznan/transformer/logic/RemoveRepeatingTransform.class
-pl/put/poznan/transformer/logic/FloatToFixedTransformer.class
 pl/put/poznan/transformer/logic/WrapExpressionTransformer$1.class
 pl/put/poznan/transformer/logic/ExpandAbbreviationTransformer$1.class
 pl/put/poznan/transformer/logic/CapitalizeTransformer.class
